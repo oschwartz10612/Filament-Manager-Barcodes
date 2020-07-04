@@ -1,0 +1,14 @@
+[Unit]
+Description=Scanner Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u scanner.py
+WorkingDirectory=/home/pi/Filament-Manager-Barcodes
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
