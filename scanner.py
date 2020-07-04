@@ -2,9 +2,7 @@
 import sys
 import json
 import requests
-
-API_KEY = ""
-
+import config
 
 def barcode_reader():
     # Barcode code obtained from 'brechmos'
@@ -69,7 +67,7 @@ def barcode_reader():
 
 def setSelection(id):
     url = 'http://localhost/plugin/filamentmanager/selections/0'
-    headers = {'X-Api-Key': API_KEY}
+    headers = {'X-Api-Key': config.API_KEY}
     payload = {
         "selection": {
             "tool": 0, 
@@ -93,7 +91,7 @@ if __name__ == '__main__':
             code = barcode_reader()
             print(code)
 
-            headers = {'X-Api-Key': API_KEY}
+            headers = {'X-Api-Key': config.API_KEY}
             url = 'http://localhost/plugin/filamentmanager/spools'
             try:
                 r = requests.get(url, headers=headers)
@@ -120,7 +118,7 @@ if __name__ == '__main__':
             else:
                 print("New spool")
                 url = 'http://localhost/plugin/filamentmanager/spools'
-                headers = {'X-Api-Key': API_KEY}
+                headers = {'X-Api-Key': config.API_KEY}
                 payload = {
                     "spool": {
                         "id": None,
