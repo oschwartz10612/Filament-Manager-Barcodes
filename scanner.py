@@ -3,7 +3,7 @@ import sys
 import json
 import requests
 
-API_KEY = "***REMOVED***"
+API_KEY = ""
 
 
 def barcode_reader():
