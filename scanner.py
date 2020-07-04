@@ -67,6 +67,24 @@ def barcode_reader():
                         ss += hid[int(c)]
     return ss
 
+def setSelection(id):
+    url = 'http://localhost/plugin/filamentmanager/selections/0'
+    headers = {'X-Api-Key': API_KEY}
+    payload = {
+        "selection": {
+            "tool": 0, 
+            "spool": {
+                "id": id
+            }   
+        }
+    }
+    try:
+        r = requests.patch(url, json=payload, headers=headers)
+        print(r.text)
+        return r
+    except Exception as e:
+        print(e)
+        raise Exception(e)
 
 if __name__ == '__main__':
     try:
@@ -77,19 +95,27 @@ if __name__ == '__main__':
 
             headers = {'X-Api-Key': API_KEY}
             url = 'http://localhost/plugin/filamentmanager/spools'
-            r = requests.get(url, headers=headers)
+            try:
+                r = requests.get(url, headers=headers)
+            except Exception as e:
+                print(e)
+                continue
 
             spools = r.json()
-            inDatabase = False
+            currentSpool = {}
+            foundSpool = False
             for spool in spools["spools"]:
                 if code == spool["name"]:
-                    inDatabase = True
+                    currentSpool = spool
+                    foundSpool = True
                     break
 
-            if inDatabase:
+            if foundSpool:
                 print("Spool in database")
-                
-                # TODO: Set current spool to code
+                try:
+                    setSelection(currentSpool["id"])
+                except Exception as e:
+                    print(e)
 
             else:
                 print("New spool")
@@ -108,9 +134,21 @@ if __name__ == '__main__':
                         }
                     }
                 }
-                r = requests.post(url, json=payload, headers=headers)
 
-                # TODO: Set current spool to code
+                try:
+                    r = requests.post(url, json=payload, headers=headers)
+                except Exception as e:
+                    print(e)
+                    continue
+
+                spool = r.json()["spool"]
+                
+                try:
+                    setSelection(spool["id"])
+                except Exception as e:
+                    print(e)
+                
+
 
     except KeyboardInterrupt:
         pass
