@@ -18,7 +18,10 @@ def barcode_reader():
             29: 'Z', 30: '!', 31: '@', 32: '#', 33: '$', 34: '%', 35: '^', 36: '&', 37: '*', 38: '(', 39: ')', 44: ' ',
             45: '_', 46: '+', 47: '{', 48: '}', 49: '|', 51: ':', 52: '"', 53: '~', 54: '<', 55: '>', 56: '?'}
 
-    fp = open('/dev/hidraw0', 'rb')
+    try:
+        fp = open('/dev/hidraw0', 'rb')
+    except Exception as e:
+        return e
 
     ss = ""
     shift = False
@@ -88,7 +91,12 @@ if __name__ == '__main__':
     try:
         while True:
 
-            code = barcode_reader()
+            try:
+                code = barcode_reader()
+            except Exception as e:
+                print(e)
+                continue
+            
             print(code)
 
             headers = {'X-Api-Key': config.API_KEY}
