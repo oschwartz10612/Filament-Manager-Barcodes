@@ -8,7 +8,7 @@ This repo extends the [Filament Manager Plugin](https://plugins.octoprint.org/pl
 
 ### Setup Filament Manager
 
-Install the [Filament Manager Plugin](https://plugins.octoprint.org/plugins/filamentmanager/)
+Install the [Filament Manager Plugin](https://plugins.octoprint.org/plugins/filamentmanager/) using my fork to enable real time updates of spools in the UI. `https://github.com/oschwartz10612/OctoPrint-FilamentManager/archive/master.zip`
 
 Configure a default spool profile. This will be the profile that newly scanner spools default to.
 
