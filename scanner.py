@@ -77,7 +77,8 @@ def setSelection(id):
             "spool": {
                 "id": id
             }   
-        }
+        },
+        "update": True
     }
     try:
         r = requests.patch(url, json=payload, headers=headers)
@@ -138,7 +139,8 @@ if __name__ == '__main__':
                         "profile": {
                             "id": 1
                         }
-                    }
+                    },
+                    "update": True
                 }
 
                 try:
@@ -154,7 +156,5 @@ if __name__ == '__main__':
                 except Exception as e:
                     print(e)
                 
-
-
     except KeyboardInterrupt:
         pass
