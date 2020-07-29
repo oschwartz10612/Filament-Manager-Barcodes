@@ -26,6 +26,11 @@ Open the directory.
 cd Filament-Manager-Barcodes
 ```
 
+Copy the service to `/etc/systemd/system/`.
+```bash
+sudo cp scanner.service /etc/systemd/system/scanner.service
+```
+
 Enable the Barcode Scanner service so it runs on reboot.
 
 ```bash
