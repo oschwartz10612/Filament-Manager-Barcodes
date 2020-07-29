@@ -2,11 +2,9 @@
 
 Add barcode support to Octoprint Filament Manager plugin using its API.
 
+Extends the [Filament Manager Plugin](https://plugins.octoprint.org/plugins/filamentmanager/) written by malnvenshorn.
+
 ## Installation
-
-This repo extends the [Filament Manager Plugin](https://plugins.octoprint.org/plugins/filamentmanager/) written by malnvenshorn.
-
-### Setup Filament Manager
 
 Install the [Filament Manager Plugin](https://plugins.octoprint.org/plugins/filamentmanager/) using my fork to enable real time updates of spools in the UI. `https://github.com/oschwartz10612/OctoPrint-FilamentManager/archive/master.zip`
 
